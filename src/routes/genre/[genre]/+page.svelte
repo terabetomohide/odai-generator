@@ -16,11 +16,11 @@
 	const count = data.list.length;
 	let currentIndex: number = random(count);
 
-	function updateList() {
+	function updateCurrentIndex() {
 		let randomIndex = random(count);
 
 		// 連続して同じ値にならないように直近20個の値の重複をチェック
-		while (indexList.length && indexList.slice(0, 20).includes(randomIndex)) {
+		while (indexList.length && indexList.slice(-20).includes(randomIndex)) {
 			randomIndex = random(count);
 		}
 		currentIndex = randomIndex;
@@ -41,7 +41,7 @@
 	<p>
 		{data.list[currentIndex]?.value}
 	</p>
-	<button class="next" on:click={()=>updateList()}>
+	<button class="next" on:click={()=>updateCurrentIndex()}>
 		次のお題
 	</button>
 </main>
